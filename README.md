@@ -1,11 +1,11 @@
 Step 1 : Install java jdk 8
-> sudo apt install openjdk-8-jdk
+-> sudo apt install openjdk-8-jdk
 
 Step 2 : Open bashrc and add configuration files
 sudo nano .bashrc
 
 add these:
-> export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
+-> export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64 
 export PATH=$PATH:/usr/lib/jvm/java-8-openjdk-amd64/bin 
 export HADOOP_HOME=~/hadoop-3.2.3/ 
 export PATH=$PATH:$HADOOP_HOME/bin 
@@ -20,25 +20,25 @@ export HADOOP_LOG_DIR=$HADOOP_HOME/logs
 export PDSH_RCMD_TYPE=ssh
 
 Step 3: Install ssh
-> sudo apt-get install ssh
+-> sudo apt-get install ssh
 
 Step 4: Download hadoop-3.2.3.tar.gz from browser
 
 Step 5: Install hadoop
-> tar -zxvf ~/Downloads/hadoop-3.2.3.tar.gz 
+-> tar -zxvf ~/Downloads/hadoop-3.2.3.tar.gz 
 
 Step 6: Go to hadoop location
-> cd hadoop-3.2.3/etc/hadoop
+-> cd hadoop-3.2.3/etc/hadoop
 
 Step 7: now open hadoop-env.sh
-> sudo nano hadoop-env.h
+-> sudo nano hadoop-env.h
 
 Step 8: In hadoop-env.sh find '#JAVA HOME', remove the '#' and replace that specific line with this
-> JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+-> JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 Step 9: Exit the hadoop-env.sh and open core-site.xml, hdfs-site.xml, mapred-site.xml and yarn-site.xml and add their respective config give below
->> sudo nano core-site.xml
-> <configuration> 
+-> sudo nano core-site.xml
+-> <configuration> 
  <property> 
  <name>fs.defaultFS</name> 
  <value>hdfs://localhost:9000</value>  </property> 
@@ -56,16 +56,16 @@ Step 9: Exit the hadoop-env.sh and open core-site.xml, hdfs-site.xml, mapred-sit
  </property> 
 </configuration>
 
->> sudo nano hdfs-site.xml
-> <configuration> 
+-> sudo nano hdfs-site.xml
+-> <configuration> 
  <property> 
  <name>dfs.replication</name> 
  <value>1</value> 
  </property> 
 </configuration>
 
->> sudo nano mapred-site.xml
-> <configuration> 
+-> sudo nano mapred-site.xml
+-> <configuration> 
  <property> 
  <name>mapreduce.framework.name</name>  <value>yarn</value> 
  </property> 
@@ -75,8 +75,8 @@ Step 9: Exit the hadoop-env.sh and open core-site.xml, hdfs-site.xml, mapred-sit
  </property> 
 </configuration>
 
->> sudo nano yarn-site.xml
-> <configuration> 
+-> sudo nano yarn-site.xml
+-> <configuration> 
  <property> 
  <name>yarn.nodemanager.aux-services</name> 
  <value>mapreduce_shuffle</value> 
@@ -88,11 +88,11 @@ Step 9: Exit the hadoop-env.sh and open core-site.xml, hdfs-site.xml, mapred-sit
 </configuration>
 
 Step 10: excute these commands in terminal 
-> ssh localhost
-> ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
+-> ssh localhost
+-> ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-> chmod 0600 ~/.ssh/authorized_keys
-> hadoop-3.2.3/bin/hdfs namenode -format
-> export PDSH_RCMD_TYPE=ssh
-> start-all.sh(to start hadoop)
-> stop-all.sh(to stop hadoop)
+-> chmod 0600 ~/.ssh/authorized_keys
+-> hadoop-3.2.3/bin/hdfs namenode -format
+-> export PDSH_RCMD_TYPE=ssh
+-> start-all.sh(to start hadoop)
+-> stop-all.sh(to stop hadoop)
